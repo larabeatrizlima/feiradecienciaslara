@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feira de Ciências - Colégio VALMAR</title>
+<style>
+  :root {
+    --accent: #00e0ff;
+    --text: #ffffff;
+    --muted: #cfcfcf;
+    --blur-bg: rgba(0, 0, 0, 0.65);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  }
+
+  body {
+    background: var(--blur-bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    padding-bottom: 3rem;
+  }
+
+  /* FUNDO DA IMAGEM */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("fundo_valmar.jpg") center/cover no-repeat;
+    filter: brightness(0.4) blur(2px);
+    z-index: -1;
+  }
+
+  /* LOGO */
+  .logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    opacity: 0.9;
+    transition: width 0.3s ease;
+  }
+
+  /* CABEÇALHO */
+  header {
+    text-align: center;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  header h1 {
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  header p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* BOTÃO FECHAR TODAS */
+  .close-all {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .close-all:hover {
+    background: var(--accent);
+    color: #000;
+    transform: scale(1.05);
+  }
+
+  /* CONTAINER FAQ */
+  .faq {
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* ITEM FAQ */
+  .faq-item {
+    background: rgba(30, 30, 30, 0.75);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 224, 255, 0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .faq-item:hover {
+    box-shadow: 0 0 25px rgba(0, 224, 255, 0.15);
+  }
+
+  .faq-question {
+    padding: 1.4rem 1.8rem;
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    font-weight: 500;
+    position: relative;
+  }
+
+  .faq-question::after {
+    content: "＋";
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-question::after {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 1.8rem;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    color: var(--muted);
+    line-height: 1.5;
+    transition: all 0.4s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 400px;
+    opacity: 1;
+    padding-bottom: 1.2rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+    color: #ccc;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* RESPONSIVIDADE */
+  @media (max-width: 768px) {
+    .logo { width: 60px; top: 15px; left: 15px; }
+    header { margin-top: 5rem; }
+    .faq-question { padding: 1rem 1.2rem; }
+    .faq-answer { padding: 0 1.2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .logo { width: 50px; }
+    header h1 { font-size: 1.6rem; }
+    header p { font-size: 0.95rem; }
+    .close-all { font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGO -->
+<img src="logo_valmar.png" alt="Logo Colégio VALMAR" class="logo" style="width: 100px; height: 100px; border-radius: 50%;"> 
+
+<header>
+  <h1>Feira de Ciências</h1>
+  <p>Tire suas dúvidas</p>
+</header>
+
+<!-- BOTÃO -->
+<button class="close-all" id="closeAllBtn">Fechar todas</button>
+
+<!-- FAQ -->
+<div class="faq">
+
+  <!-- 🔹 EDITAR AS PERGUNTAS AQUI -->
+<div class="faq-item">
+    <div class="faq-question">O que é Inteligência Artificial?</div>
+    <div class="faq-answer">É um campo da ciência da computação que busca criar sistemas capazes de realizar tarefas que normalmente exigiriam inteligência humana.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Quais são as limitações da IA?</div>
+    <div class="faq-answer">A IA precisa de grandes quantidades de dados para aprender e ainda tem dificuldades com intuição e com a capacidade de sair do contexto para o qual foi desenvolvida.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">A IA vai acabar com empregos?</div>
+    <div class="faq-answer">É provável que automatize tarefas e elimine alguns empregos, mas também criará novas oportunidades, exigindo que os trabalhadores se qualifiquem.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">A IA é confiável?</div>
+    <div class="faq-answer">As respostas podem conter erros ou vieses, por isso é fundamental verificar as informações geradas por ela.</div>
+  </div>
+
+  <!-- ADICIONE OU EDITE AQUI -->
+</div>
+
+<footer>Desenvolvido para o Colégio VALMAR • Feira de Ciências</footer>
+
+<script>
+  const faqs = document.querySelectorAll('.faq-item');
+  const closeAllBtn = document.getElementById('closeAllBtn');
+
+  faqs.forEach(faq => faq.addEventListener('click', () => faq.classList.toggle('active')));
+  closeAllBtn.addEventListener('click', () => faqs.forEach(faq => faq.classList.remove('active')));
+</script>
+
+</body>
+</html>
